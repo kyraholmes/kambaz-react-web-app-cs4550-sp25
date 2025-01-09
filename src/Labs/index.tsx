@@ -5,6 +5,7 @@ import Lab3 from "./Lab3";
 export default function Labs() {
     return (
         <div>
+            <h1>Labs</h1>
             <Lab1></Lab1>
             <Lab2></Lab2>
             <Lab3></Lab3>
