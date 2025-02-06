@@ -1,7 +1,5 @@
 import { Container, Nav, Navbar} from "react-bootstrap";
-import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
-import { Offcanvas } from "react-bootstrap";
 
 export default function CourseNavigationBar() {
   return (
