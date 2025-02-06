@@ -1,20 +1,40 @@
 import { Link } from "react-router-dom";
+import { Form, FormGroup, FormControl, FormSelect } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 export default function Profile() {
     return (
         <div id="wd-profile-screen">
-            <h3>Profile</h3>
-            <input defaultValue="alice" placeholder="username" className="wd-username" /><br />
-            <input defaultValue="123" placeholder="password" type="password" className="wd-password" /><br />
-            <input defaultValue="Alice" placeholder="First Name" id="wd-firstname" /><br />
-            <input defaultValue="Wonderland" placeholder="Last Name" id="wd-lastname" /><br />
-            <input defaultValue="2000-01-01" type="date" id="wd-dob" /><br />
-            <input defaultValue="alice@wonderland" type="email" id="wd-email" /><br />
-            <select defaultValue="FACULTY" id="wd-role">
-                <option value="USER">User</option>       <option value="ADMIN">Admin</option>
-                <option value="FACULTY">Faculty</option> <option value="STUDENT">Student</option>
-            </select><br />
-            <Link to="/Kambaz/Account/Signin" >Sign out</Link>
+            <Form>
+                <h2>Profile</h2>
+                <FormGroup controlId="wd-username">
+                    <FormControl placeholder="Username" defaultValue="alice"></FormControl>
+                </FormGroup>
+                <FormGroup controlId="wd-password">
+                    <FormControl placeholder="Password" defaultValue="123"></FormControl>
+                </FormGroup>
+                <FormGroup controlId="wd-first-name">
+                    <FormControl placeholder="First Name" defaultValue="Alice"></FormControl>
+                </FormGroup>
+                <FormGroup controlId="wd-last-name">
+                    <FormControl placeholder="Last Name" defaultValue="Wonderland"></FormControl>
+                </FormGroup>
+                <FormGroup controlId="wd-date">
+                    <FormControl type="date" defaultValue="2020-02-26"></FormControl>
+                </FormGroup>
+                <FormGroup controlId="wd-email">
+                    <FormControl type="email" placeholder="email" defaultValue="alice@wonderland.com"></FormControl>
+                </FormGroup>
+                <FormGroup controlId="wd-role">
+                    <FormSelect defaultValue="USER">
+                        <option value="USER">User</option>
+                        <option value="FACULTY">Faculty</option>
+                    </FormSelect>
+                </FormGroup>
+                <Link to={'/Kambaz/Account/Signin'}>
+                    <Button type="submit">Signout</Button>
+                </Link>
+            </Form>
         </div>
     );
 }

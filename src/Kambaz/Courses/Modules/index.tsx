@@ -1,53 +1,117 @@
+import LessonControlButtons from "./LessonControlButtons";
+import ModulesControls from "./ModulesControls";
+import { ListGroup } from "react-bootstrap";
+import SideGrip from "./SideGrip";
+
 export default function Modules() {
   return (
-    <div>
-      <button id="wd-module-button">Collapse All</button>
-      <button id="wd-module-button">View Progress</button>
-      <select id="wd-module-button" name="publish-select">
-        <option value="All">Publish All</option>
-      </select>
-      <button id="wd-module-button">+ Module</button>
-      <ul id="wd-modules">
-        <li className="wd-module">
-          <div className="wd-title">Week 1, Lecture 1 - Course Introduction, Syllabus, Agenda</div>
-          <ul className="wd-lessons">
-            <li className="wd-lesson">
-              <span className="wd-title">LEARNING OBJECTIVES</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">Introduction to the course</li>
-                <li className="wd-content-item">Learn what is Web Development</li>
-              </ul>
-              <span className="wd-title">READING</span>
-                <ul className="wd-content">
-                  <li className="wd-content-item">Full Stack Developer - Chapter 1 - Introduction</li>
-                  <li className="wd-content-item">Full Stack Developer - Chapter 2 - Creating User Interfaces with HTML</li>
-                </ul>
-              <span className="wd-title">SLIDES</span>
-                <ul className="wd-content">
-                  <li className="wd-content-item">Introduction to Web Development</li>
-                  <li className="wd-content-item">Creating an HTTP server with Node.js</li>
-                  <li className="wd-content-item">Creating a React Application</li>
-                </ul>
-            </li>
-          </ul>
-        </li>
-        <li className="wd-module">
-          <div className="wd-title">Week 1, Lecture 2 - Formatting User Interfaces with HTML</div>
-          <ul className="wd-lessons">
-            <li className="wd-lesson">
-              <span className="wd-title">LEARNING OBJECTIVES</span>
-              <ul className="wd-content-item">Learn how to create user interfaces with HTML</ul>
-              <ul className="wd-content-item">Deploy the assignment to Nelify</ul>
-            </li>
-            <li className="wd-lesson">
-              <span className="wd-title">SLIDES</span>
-              <ul className="wd-content-item">Introduction to HTML and the DOM</ul>
-              <ul className="wd-content-item">Formatting Web content with Headings and Parahraphs</ul>
-              <ul className="wd-content-item">Formatting content with Lists and Tables</ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
+    <div id="wd-modules-whole">
+      <ModulesControls /> <br /> <br /> <br /> <br />
+      <ListGroup className="rounded-0" id="wd-modules">
+        <ListGroup.Item className="wd-module p-0 mb-5 fs-5 border-gray">
+          <div className="wd-title p-3 ps-2 bg-secondary"> 
+            <SideGrip />
+            Week 1, Lecture 1 - Course Introduction, Syllabus, Agenda
+            <LessonControlButtons />
+          </div>
+          <ListGroup className="wd-lessons rounded-0">
+            <ListGroup.Item className="wd-lesson p-3 ps-1 wd-bold-lesson">
+              <SideGrip />
+              LEARNING OBJECTIVES 
+              <LessonControlButtons />
+            </ListGroup.Item>
+            <ListGroup.Item className="wd-lesson p-3 ps-1">
+              <SideGrip />
+              Introduction to the course 
+              <LessonControlButtons />
+            </ListGroup.Item>
+            <ListGroup.Item className="wd-lesson p-3 ps-1">
+              <SideGrip />
+              Learn what is Web Development 
+              <LessonControlButtons />  
+            </ListGroup.Item>
+            <ListGroup.Item className="wd-lesson p-3 ps-1 wd-bold-lesson">
+              <SideGrip />
+              READING 
+              <LessonControlButtons />
+            </ListGroup.Item>
+            <ListGroup.Item className="wd-lesson p-3 ps-1">
+              <SideGrip />  
+              Full Stack Developer - Chapter 1 - Introduction 
+              <LessonControlButtons />  
+            </ListGroup.Item>
+            <ListGroup.Item className="wd-lesson p-3 ps-1">
+              <SideGrip />
+              Full Stack Developer - Chapter 2 - Creating User Interfaces with HTML 
+              <LessonControlButtons />
+            </ListGroup.Item>
+            <ListGroup.Item className="wd-lesson p-3 ps-1 wd-bold-lesson">
+              <SideGrip />
+              SLIDES 
+              <LessonControlButtons />
+            </ListGroup.Item>
+            <ListGroup.Item className="wd-lesson p-3 ps-1">
+              <SideGrip />
+              Introduction to Web Development 
+              <LessonControlButtons />  
+            </ListGroup.Item>
+            <ListGroup.Item className="wd-lesson p-3 ps-1">
+              <SideGrip />
+              Creating an HTTP server with Node.js 
+              <LessonControlButtons />
+            </ListGroup.Item>
+            <ListGroup.Item className="wd-lesson p-3 ps-1">
+              <SideGrip />
+              Creating a React Application 
+              <LessonControlButtons />
+            </ListGroup.Item>
+          </ListGroup>
+        </ListGroup.Item>
+        <ListGroup.Item className="wd-module p-0 mb-5 fs-5 border-gray">
+          <div className="wd-title p-3 ps-2 bg-secondary"> 
+            <SideGrip />
+            Week 1, Lecture 2 - Formatting User Interfaces with HTML
+            <LessonControlButtons />
+          </div>
+          <ListGroup className="wd-lessons rounded-0">
+            <ListGroup.Item className="wd-lesson p-3 ps-1 wd-bold-lesson">
+              <SideGrip />
+              LEARNING OBJECTIVES 
+              <LessonControlButtons />
+            </ListGroup.Item>
+            <ListGroup.Item className="wd-lesson p-3 ps-1">
+              <SideGrip />
+              Learn how to create user interfaces with HTML
+              <LessonControlButtons />
+            </ListGroup.Item>
+            <ListGroup.Item className="wd-lesson p-3 ps-1">
+              <SideGrip />
+              Deploy the assignment to Nelify
+              <LessonControlButtons />  
+            </ListGroup.Item>
+            <ListGroup.Item className="wd-lesson p-3 ps-1 wd-bold-lesson">
+              <SideGrip />
+              SLIDES
+              <LessonControlButtons />
+            </ListGroup.Item>
+            <ListGroup.Item className="wd-lesson p-3 ps-1">
+              <SideGrip />
+              Introduction to HTML and the DOM
+              <LessonControlButtons />  
+            </ListGroup.Item>
+            <ListGroup.Item className="wd-lesson p-3 ps-1">
+              <SideGrip />
+              Formatting Web content with Headings and Parahraphs
+              <LessonControlButtons />
+            </ListGroup.Item>
+            <ListGroup.Item className="wd-lesson p-3 ps-1">
+              <SideGrip />
+              Formatting content with Lists and Tables 
+              <LessonControlButtons />
+            </ListGroup.Item>
+          </ListGroup>
+        </ListGroup.Item>
+      </ListGroup>
     </div>
   );
 }

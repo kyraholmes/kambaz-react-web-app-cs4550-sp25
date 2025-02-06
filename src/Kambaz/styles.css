@@ -1,0 +1,406 @@
+body   {  margin: 0;  padding: 0;  }
+body * {  font-family: system-ui, -apple-system, "Segoe UI",
+   Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans",
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", 
+    "Segoe UI Symbol", "Noto Color Emoji"  }
+
+@media (min-width: 768px) {
+  #wd-kambaz .wd-main-content-offset {
+    padding-left: 140px !important;
+  }
+}
+
+/*
+  Kambaz/Dashboard.tsx
+*/
+.wd-dashboard-course-title.h5 {
+  font-size: 15px;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.wd-dashboard-course-description {
+  min-height: 20px;
+  font-size: 12px;
+}
+
+.wd-dashboard-course-link Button {
+  height: 25px;
+  font-size: 15px;
+  padding: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: middle;
+  
+}
+
+.wd-dashboard-course.col {
+  padding: 0px;
+  width: 270px;
+  margin: 15px;
+}
+
+/*
+  Kambaz/Courses/Dashboard.tsx
+*/
+
+.list-group.wd > .list-group-item.active {
+  color: black;
+  background-color: white;
+  border-left: 3px solid black !important;
+}
+
+#wd-courses-navigation > .list-group-item {
+  font-size: 16px;
+}
+
+#wd-courses-navigation {
+  width: 150px;
+}
+
+/*
+  Kambaz/Courses/index.tsx
+*/
+
+.wd-courses-course-title {
+  font-size: 20px;
+}
+
+/*
+  Kambaz/Courses/Modules/ModulesControls.tsx
+*/
+
+#wd-modules-controls > Button, #wd-publish-all-btn {
+  height: 40px;
+  font-size: 14px;
+  border-radius: 3px;
+  padding-top: 7px;
+
+}
+
+#wd-publish-all-btn, #wd-view-progress, #wd-collapse-all {
+  border-color: gainsboro;
+  border-width: 1px;
+}
+
+#wd-add-module-btn {
+  border-color:rgb(222, 37, 37);
+  border-width: 1px;
+}
+
+/*
+  Kambaz/Courses/Modules/index.tsx
+*/
+
+.btn-secondary {
+  --bs-btn-color: #000 !important;
+  --bs-btn-bg: #c7cdd1 !important;
+  --bs-btn-border-color: #c7cdd1 !important;
+  --bs-btn-hover-color: #fff !important;
+}
+.bg-secondary {
+  --bs-secondary-rgb: 199, 205, 209;
+}
+.list-group-item {
+  --bs-list-group-border-color: gainsboro;
+}
+.wd-lesson {
+  border-left: 4px solid green !important;
+  font-size:18px;
+}
+
+
+.wd-grip-module-btn {
+  height: 24px;
+  width: 24px;
+}
+
+/*
+  Kambaz/Courses/Home/Status.tsx
+*/
+
+#wd-course-status Button {
+  height: 45px;
+  font-size: 16px;
+  border-radius: 3px;
+  padding-top: 7px; 
+}
+
+#wd-course-status {
+  width: 300px;
+}
+
+/*
+  Kambaz/Courses/Home/index.tsx
+*/
+
+#wd-status-bar {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#wd-status-title {
+  padding-bottom: 5px;
+}
+
+/*
+  Kambaz/Courses/People/Table.tsx
+*/
+
+#wd-people-table tr {
+  vertical-align: middle;
+}
+#wd-people-table td {
+  font-size: 14px;
+}
+
+/*
+  Kambaz/Courses/Assignemnts/AssignmentDetails.tsx
+*/
+
+#wd-assignment-details {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.wd-detail-separator{
+  margin-left: .25em;
+  margin-right: .25em;
+  font-size: 15px;
+  font-weight: 200;
+  color: gainsboro;
+}
+
+.wd-detail-a {
+  font-size: 14px;
+  color:#474747;
+}
+
+#wd-assingment-details > span {
+  vertical-align: middle;
+
+}
+
+.font-weight-bold {
+  font-weight: 525;
+}
+
+#wd-assignment-name {
+  font-weight: 500;
+  font-size: 16px;
+  display: inline-block;
+  width: 100%;
+}
+
+.me-2.wd-side-grip {
+  margin-right: 4px !important;
+}
+
+.me-2.wd-edit-assignment-icon {
+  margin-right: 15px !important;
+}
+
+.wd-assignment {
+  text-wrap: wrap;
+  border-left: 2px solid green !important;
+}
+
+/*
+  Kambaz/Courses/Assignemnts/AssignmentButtons.tsx
+*/
+
+#wd-add-assignment-btn, #wd-add-group-btn {
+  height: 40px;
+  font-size: 16px;
+  border-radius: 3px;
+  padding-top: 7px; 
+}
+
+#wd-assignment-buttons > Col {
+  padding: 0px;
+  vertical-align: middle;
+}
+
+#wd-assignment-search-container {
+  padding: 10px;
+  padding-bottom: 0px;
+  padding-top: 8px;
+  height: 40px;
+  border-style: solid;
+  border-radius: 3px;
+  border-color: gainsboro;
+  border-width: 1px;
+
+}
+.wd-assignment-button-col {
+  vertical-align: middle;
+  margin-bottom: 30px;
+}
+
+
+#wd-assignment-search {
+  padding: 0px;
+  margin: 0px;
+  border-style: hidden;
+  width: 90%;
+}
+
+@media (max-width: 1199px) {
+  #wd-assignment-search {
+    width: 80%
+  }
+}
+
+#wd-add-assignment-btn {
+  margin-right:0px !important;
+}
+
+#wd-assignment-search:focus {
+  padding: 0px;
+  margin: 0px;
+  outline: none;
+  border-style: hidden;
+}
+
+#wd-assignment-search-container > label {
+  padding: 0px;
+  margin: 0px;
+  height: 20px;
+
+}
+
+#wd-search-icon {
+  width:20px;
+  height:20px;
+  margin-right:10px;
+  vertical-align: top; 
+  color: #474747;
+}
+
+/*
+  Kambaz/Courses/Assignemnts/Editor.tsx
+*/
+
+#wd-assignments-editor Button {
+  font-size: 14px;
+  margin-right: 5px;
+  border-radius: 3px;
+  border-width: 1px;
+} 
+
+#wd-assignments-editor Button.wd-cancel-btn {
+  border-color: gainsboro;
+}
+
+#wd-assignments-editor Button.wd-save-btn {
+  border-color: firebrick;
+}
+
+#wd-input-assignment-description > .form-control {
+  vertical-align: top;
+}
+
+#wd-assignments-editor {
+  max-width: 1000px;
+  font-size: 14px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+#wd-assignments-editor .form-control, #wd-assignments-editor .form-select  {
+  border-radius: 3px;
+}
+
+.wd-form-group-container {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #dee2e6;
+  border-radius: 3px;
+  padding: 15px;
+}
+
+.wd-input-label {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+#wd-assign-to-box {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #dee2e6;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+#wd-everyone-item {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #dee2e6;
+  border-radius: 3px;
+  padding: 2px;
+  padding-right: 10px;
+  padding-left: 10px;
+  vertical-align: middle;
+  font-size: 13px;
+
+}
+
+#wd-close-x {
+  height: 18px;
+  width: 18px;
+  padding-top: 4px;
+  margin-left: 15px;
+  margin-right: 0px;
+}
+
+#wd-assignments-editor hr {
+  margin-top: 40px;
+}
+
+@media (max-width: 576px) {
+  .wd-section-label.col-form-label {
+    text-align: left !important;
+  }
+}
+
+/*
+  Kambaz/Courses/Account/Navigation.tsx
+*/
+
+#wd-account-navigation > .list-group-item.active {
+  font-size: 16px;
+}
+
+#wd-account-navigation > .list-group-item {
+  font-size: 16px;
+}
+
+/*
+  Kambaz/Courses/Account/
+*/
+
+#wd-username.form-control, #wd-password.form-control,
+#wd-first-name.form-control, #wd-last-name.form-control, #wd-date.form-control, #wd-email.form-control, #wd-role.form-select, #wd-password-verify.form-control, #wd-signup-screen Button, #wd-signin-screen Button, #wd-profile-screen Button {
+  height: 30px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  width: 250px;
+  font-size: 14px;
+  vertical-align: middle;
+  padding-top: 4px;
+}
+
+#wd-signin-screen,  #wd-signup-screen,  #wd-profile-screen {
+  font-size: 14px;
+}
+
+#wd-nav-container {
+  max-width: 150px;
+  flex-direction: column;
+  flex-wrap:wrap ;
+  
+}
+
