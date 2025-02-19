@@ -8,13 +8,19 @@ import { Navigate, Route, Routes } from "react-router"
 import PeopleTable from "./People/Table";
 //import CourseNavigationBar from "./NavigationBar";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { courses } from "../Database";
+import { useParams, useLocation } from "react-router-dom";
 
 export default function Courses() {
+  const { cid } = useParams();
+  const course = courses.find((course) => course._id === cid);
+  const { pathname } = useLocation();
+
   return (
     <div id="wd-courses">
       <h2 className="text-danger wd-courses-course-title">
       <RxHamburgerMenu style={{marginRight: "10px"}} />
-        Course 1234
+        {course && course.name} &gt; {pathname.split("/")[4]}
       </h2>
       <hr style={{marginBottom:"30px"}}/>
       <div className="d-flex">

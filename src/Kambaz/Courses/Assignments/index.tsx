@@ -4,8 +4,13 @@ import EditAssignment from "./EditAssignment";
 import SideGrip from "../Modules/SideGrip";
 import AssignmentDetails from "./AssignmentDetails";
 import AssignmentButtons from "./AssignmentButtons";
+import { useParams } from "react-router-dom";
+import * as db from "../../Database";
 
 export default function Assignments() {
+  const { cid } = useParams();
+  const assignments = db.assignments; 
+  
   return (
     <div id="wd-assignments">
       <AssignmentButtons />
@@ -16,35 +21,22 @@ export default function Assignments() {
             ASSIGNMENTS
             <LessonControlButtons />
           </div>
-          <ListGroup className="wd-assignment rounded-0">
-            <a href="#/Kambaz/Courses/1234/Assignments/123"
-              className="wd-assignment-link" >
-              <ListGroup.Item className="wd-assignment p-3 ps-1">
-                <SideGrip />
-                <EditAssignment />
-                <AssignmentDetails aName="A1" aAvailDate="May 6 at 12:00am" aDueDate="May 13 at 11:59pm"/>
-                <LessonControlButtons />
-              </ListGroup.Item>
-            </a>  
-            <a href="#/Kambaz/Courses/1234/Assignments/123"
-              className="wd-assignment-link" >
-              <ListGroup.Item className="wd-assignment p-3 ps-1">
-                <SideGrip />
-                <EditAssignment />
-                <AssignmentDetails aName="A2" aAvailDate="May 13 at 12:00am" aDueDate="May 20 at 11:59pm" />
-                <LessonControlButtons />
-              </ListGroup.Item>
-            </a>
-            <a href="#/Kambaz/Courses/1234/Assignments/123"
-              className="wd-assignment-link" >
-              <ListGroup.Item className="wd-assignment p-3 ps-1">
-                <SideGrip />
-                <EditAssignment />
-                <AssignmentDetails aName="A3" aAvailDate="May 20 at 12:00am" aDueDate="May 27 at 11:59pm"/>
-                <LessonControlButtons />  
-              </ListGroup.Item>
-            </a>
-          </ListGroup>
+          {assignments
+            .filter((assignment:any) => (assignment.course === cid))
+            .map((assignment:any) => (
+              <ListGroup className="wd-assignment rounded-0">
+                <a href={`#/Kambaz/Courses/${cid}/Assignments/${assignment._id}`}
+                  className="wd-assignment-link" >
+                  <ListGroup.Item className="wd-assignment p-3 ps-1">
+                    <SideGrip />
+                    <EditAssignment />
+                    <AssignmentDetails aName={`${assignment.title}`} aAvailDate={`${assignment.dueDate}`} aDueDate={`${assignment.availDate}`}/>
+                    <LessonControlButtons />
+                  </ListGroup.Item>
+                </a>  
+              </ListGroup>
+            ))
+          }
         </ListGroup.Item>
       </ListGroup>
     </div>

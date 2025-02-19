@@ -2,6 +2,8 @@ import { FormGroup, FormLabel, FormControl, FormSelect, Form } from "react-boots
 import { Row, Col } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { IoClose } from "react-icons/io5";
+import { useParams } from "react-router-dom";
+import * as db from "../../Database";
 
 export default function AssignmentEditor() {
   let desc: string = "The assignment is available online.\n\n" + 
@@ -12,23 +14,27 @@ export default function AssignmentEditor() {
   "- Link to all of the Kambaz application\n" + 
   "- Links to all the relavant source code repositories\n\n" + 
   "The Kambaz application should include a link to navigate back to the landing page."
-   
+  const { cid, aid} = useParams();
+  const assignment = db.assignments.find(
+    (assignment) => (assignment._id === aid && assignment.course === cid));
+  
+  console.log(assignment)
 
   return (
     <div id="wd-assignments-editor">
       <Form>
         <FormGroup id="wd-name" className="wd-input-assignment mb-4" controlId="wd-edit-assignment-name">
           <FormLabel>Assignment Name</FormLabel>
-          <FormControl type="text" defaultValue="A1" />
+          <FormControl type="text" defaultValue={assignment?.title} />
         </FormGroup>
         <FormGroup id="wd-description" className="wd-input-assignment mb-4" controlId="wd-edit-assignment-description">
           <FormControl as="textarea" rows={12} 
-            value={desc}/>
+            value={assignment?.Description}/>
         </FormGroup>
         <FormGroup as={Row} controlId="wd-points" className="mb-4">
           <FormLabel column xs={12} sm={3} className="text-end wd-section-label">Points</FormLabel>
           <Col sm={9}>
-            <FormControl type="text" defaultValue="100"></FormControl>
+            <FormControl type="text" defaultValue={assignment?.points}></FormControl>
           </Col>
         </FormGroup>
         <FormGroup as={Row} id="wd-assignment-group" controlId="wd-assignment-group" className="mb-4">
@@ -81,17 +87,17 @@ export default function AssignmentEditor() {
               <Row>
                 <Col className="mb-3">
                   <FormLabel className="wd-input-label">Due</FormLabel>
-                  <FormControl type="date" defaultValue="2024-05-13"></FormControl>
+                  <FormControl type="date" defaultValue={assignment?.due}></FormControl>
                 </Col>
               </Row>
               <Row>
                 <Col className="mb-3">
                   <FormLabel className="wd-input-label">Available from</FormLabel>
-                  <FormControl type="date" defaultValue="2024-05-06"></FormControl>
+                  <FormControl type="date" defaultValue={assignment?.avail}></FormControl>
                 </Col>
                 <Col>
                   <FormLabel className="wd-input-label">Until</FormLabel>
-                  <FormControl type="date" defaultValue="2024-05-20"></FormControl>
+                  <FormControl type="date" defaultValue={assignment?.due}></FormControl>
                 </Col>
               </Row>
             </div>
