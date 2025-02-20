@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import { IoClose } from "react-icons/io5";
 import { useParams } from "react-router-dom";
 import * as db from "../../Database";
+import { Link } from "react-router-dom";
 
 export default function AssignmentEditor() {
   const { cid, aid} = useParams();
@@ -96,8 +97,8 @@ export default function AssignmentEditor() {
           </Col>
         </FormGroup>
         <hr id="wd-horizontal-line" />
-        <Button type="submit" variant="danger" className="float-end wd-save-btn">Save</Button>
-        <Button variant="light" className="float-end wd-cancel-btn">Cancel</Button>
+        <Link to={`/Kambaz/Courses/${cid}/Assignments`}><Button type="submit" variant="danger" className="float-end wd-save-btn">Save</Button></Link>
+        <Link to={`/Kambaz/Courses/${cid}/Assignments`}><Button variant="light" className="float-end wd-cancel-btn">Cancel</Button></Link>
       </Form>
     </div>
 
