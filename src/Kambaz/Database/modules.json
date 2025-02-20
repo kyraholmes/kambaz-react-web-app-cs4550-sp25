@@ -1,99 +1,127 @@
 [
   {
     "_id": "M101",
-    "name": "Introduction to Rocket Propulsion",
-    "description": "Basic principles of rocket propulsion and rocket engines.",
+    "name": "Introduction React",
+    "description": "Basic principles of React and coding with React",
     "course": "CS1234",
     "lessons": [
       {
         "_id": "L101",
-        "name": "History of Rocketry",
-        "description": "A brief history of rocketry and space exploration.",
+        "name": "History of React",
+        "description": "A brief history of the web and React",
         "module": "M101"
       },
       {
         "_id": "L102",
-        "name": "Rocket Propulsion Fundamentals",
-        "description": "Basic principles of rocket propulsion.",
-        "module": "M101"
-      },
-      {
-        "_id": "L103",
-        "name": "Rocket Engine Types",
-        "description": "Overview of different types of rocket engines.",
+        "name": "Syntax",
+        "description": "Basic Syntax to know",
         "module": "M101"
       }
     ]
   },
   {
     "_id": "M102",
-    "name": "Fuel and Combustion",
-    "description": "Understanding rocket fuel, combustion processes, and efficiency.",
+    "name": "Components",
+    "description": "How to create and use React components",
     "course": "CS1234",
     "lessons": [
       {
         "_id": "L201",
-        "name": "Rocket Fuel",
-        "description": "Overview of different types of rocket fuels.",
+        "name": "Built in componenents",
+        "description": "Overview of different types of build in components",
         "module": "M102"
       },
       {
         "_id": "L202",
-        "name": "Combustion Processes",
-        "description": "Understanding combustion processes and efficiency.",
+        "name": "Custom Components",
+        "description": "Understanding the creation of custom react components",
         "module": "M102"
       },
       {
         "_id": "L203",
-        "name": "Combustion Instability",
-        "description": "Understanding combustion instability and mitigation.",
+        "name": "Custom Components Pt2",
+        "description": "Creating your own components",
         "module": "M102"
       }
     ]
   },
   {
     "_id": "M103",
-    "name": "Nozzle Design",
-    "description": "Principles of rocket nozzle design and performance optimization.",
+    "name": "Making Websites",
+    "description": "Principles of good website design using react.",
     "course": "CS1234",
     "lessons": [
       {
         "_id": "L301",
-        "name": "Nozzle Design",
-        "description": "Overview of different types of rocket nozzles.",
+        "name": "Site Design",
+        "description": "Overview of how to design different websites",
         "module": "M103"
       },
       {
         "_id": "L302",
-        "name": "Nozzle Performance",
-        "description": "Understanding nozzle performance and efficiency.",
+        "name": "Dynamic Components",
+        "description": "Using React to implement websites",
         "module": "M103"
       },
       {
         "_id": "L303",
-        "name": "Nozzle Optimization",
-        "description": "Optimizing nozzle design for specific applications.",
+        "name": "Good Design",
+        "description": "Practicing good design in react",
         "module": "M103"
       }
     ]
   },
   {
     "_id": "M201",
-    "name": "Fundamentals of Aerodynamics",
-    "description": "Basic aerodynamic concepts and fluid dynamics principles.",
-    "course": ""
+    "name": "Philosophy Introduction",
+    "description": "I think therefore I am. Socrates!!! ",
+    "course": "PHIL1300",
+    "lessons": [
+      {
+        "_id": "L201",
+        "name": "Socrates",
+        "description": "Who is this man? Is he mortal?",
+        "module": "M201"
+      },
+      {
+        "_id": "L202",
+        "name": "How to Ponder",
+        "description": "Thinking is really important. How do we do it?",
+        "module": "M201"
+      }
+    ]
   },
   {
     "_id": "M202",
-    "name": "Subsonic and Supersonic Flow",
-    "description": "Understanding subsonic and supersonic aerodynamic behaviors.",
-    "course": "RS102"
+    "name": "Philosophy Second Introduction",
+    "description": "Time to double down on the Philosophy thing. What does it mean?",
+    "course": "PHIL1300",
+    "lessons": [
+      {
+        "_id": "L201",
+        "name": "Plato",
+        "description": "Who is this man? Is he mortal? Is he not the same man as Socrates?",
+        "module": "M202"
+      },
+      {
+        "_id": "L202",
+        "name": "Nothing is real, at all.",
+        "description": "You are a brain in a vat, don't forget to not trust your senses.",
+        "module": "M202"
+      },
+      {
+        "_id": "L203",
+        "name": "AI is going to take over the world. How do you feel about that?",
+        "description": "Are humans becoming useless? Yes!",
+        "module": "M202"
+      }
+    ]
   },
   {
     "_id": "M203",
     "name": "Aerodynamic Heating",
     "description": "Study of aerodynamic heating and thermal protection systems.",
-    "course": "RS102"
+    "course": ""
   },
   {
     "_id": "M301",

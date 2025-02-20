@@ -6,14 +6,6 @@ import { useParams } from "react-router-dom";
 import * as db from "../../Database";
 
 export default function AssignmentEditor() {
-  let desc: string = "The assignment is available online.\n\n" + 
-  "Submit a link to the landing page of your Web application running on Netlify.\n\n" + 
-  "The landing page should include the following:\n\n"+ 
-  "- Your full name and section\n" + 
-  "- Links to each of the lab assignments\n" +
-  "- Link to all of the Kambaz application\n" + 
-  "- Links to all the relavant source code repositories\n\n" + 
-  "The Kambaz application should include a link to navigate back to the landing page."
   const { cid, aid} = useParams();
   const assignment = db.assignments.find(
     (assignment) => (assignment._id === aid && assignment.course === cid));
