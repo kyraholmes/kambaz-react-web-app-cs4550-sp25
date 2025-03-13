@@ -16,7 +16,6 @@ export default function Signin() {
         (u: any) => u.username === credentials.username && u.password === credentials.password);
       if (!user) return;
       dispatch(setCurrentUser(user));
-      console.log("dispatch", dispatch(setCurrentUser(user)))
       navigate("/Kambaz/Dashboard");
     };
   

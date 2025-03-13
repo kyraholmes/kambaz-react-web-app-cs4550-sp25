@@ -14,7 +14,6 @@ export default function Modules() {
   const {cid} = useParams();
   const [moduleName, setModuleName] = useState("");
   const { modules } = useSelector((state: any) => state.modulesReducer);
-  const { currentUser } = useSelector((state: any) => state.accountReducer);
   const dispatch = useDispatch();
 
   return (

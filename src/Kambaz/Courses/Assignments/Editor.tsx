@@ -2,32 +2,58 @@ import { FormGroup, FormLabel, FormControl, FormSelect, Form } from "react-boots
 import { Row, Col } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { IoClose } from "react-icons/io5";
-import { useParams } from "react-router-dom";
-import * as db from "../../Database";
-import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updateAssignment, deleteAssignment } from "./reducer";
 
 export default function AssignmentEditor() {
   const { cid, aid} = useParams();
-  const assignment = db.assignments.find(
-    (assignment) => (assignment._id === aid && assignment.course === cid));
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { assignments } = useSelector((state: any) => state.assignmentReducer);
+  const assignment = assignments.find(
+    (assignment: any) => (assignment._id === aid && assignment.course === cid)); 
   
-  console.log(assignment)
+  const original = {
+    _id: assignment._id,
+    title: assignment.title,
+    course: assignment.course, 
+    points: assignment.points,
+    Description: assignment.Description, 
+    dueDate: assignment.dueDate, 
+    due: assignment.due,
+    avail: assignment.avail, 
+    availDate: assignment.availDate
+  };
+
+  const handleCancel = () => {
+      assignment.isNew === "true" ? dispatch(deleteAssignment(assignment._id)) : dispatch(updateAssignment({...original}));
+      navigate(`/Kambaz/Courses/${cid}/Assignments`);
+  }
+
+  const handleSave = () => {
+    dispatch(updateAssignment({...assignment, isNew: "false"}));
+    navigate(`/Kambaz/Courses/${cid}/Assignments`);
+  }
 
   return (
     <div id="wd-assignments-editor">
       <Form>
         <FormGroup id="wd-name" className="wd-input-assignment mb-4" controlId="wd-edit-assignment-name">
           <FormLabel>Assignment Name</FormLabel>
-          <FormControl type="text" defaultValue={assignment?.title} />
+          <FormControl type="text" defaultValue={assignment?.title} 
+          onChange={(e)=>{dispatch(updateAssignment({...assignment, title: e.target.value}))}}/>
         </FormGroup>
         <FormGroup id="wd-description" className="wd-input-assignment mb-4" controlId="wd-edit-assignment-description">
           <FormControl as="textarea" rows={12} 
-            value={assignment?.Description}/>
+            defaultValue={assignment?.Description}
+            onChange={(e)=>{dispatch(updateAssignment({...assignment, Description: e.target.value}))}}/>
         </FormGroup>
         <FormGroup as={Row} controlId="wd-points" className="mb-4">
           <FormLabel column xs={12} sm={3} className="text-end wd-section-label">Points</FormLabel>
           <Col sm={9}>
-            <FormControl type="text" defaultValue={assignment?.points}></FormControl>
+            <FormControl type="text" defaultValue={assignment?.points}
+            onChange={(e)=>{dispatch(updateAssignment({...assignment, points: e.target.value}))}}></FormControl>
           </Col>
         </FormGroup>
         <FormGroup as={Row} id="wd-assignment-group" controlId="wd-assignment-group" className="mb-4">
@@ -80,25 +106,28 @@ export default function AssignmentEditor() {
               <Row>
                 <Col className="mb-3">
                   <FormLabel className="wd-input-label">Due</FormLabel>
-                  <FormControl type="date" defaultValue={assignment?.due}></FormControl>
+                  <FormControl type="date" defaultValue={assignment?.due}
+                  onChange={(e)=>{dispatch(updateAssignment({...assignment, due: e.target.value}))}}></FormControl>
                 </Col>
               </Row>
               <Row>
                 <Col className="mb-3">
                   <FormLabel className="wd-input-label">Available from</FormLabel>
-                  <FormControl type="date" defaultValue={assignment?.avail}></FormControl>
+                  <FormControl type="date" defaultValue={assignment?.avail}
+                  onChange={(e)=>{dispatch(updateAssignment({...assignment, avail: e.target.value}))}}></FormControl>
                 </Col>
                 <Col>
                   <FormLabel className="wd-input-label">Until</FormLabel>
-                  <FormControl type="date" defaultValue={assignment?.due}></FormControl>
+                  <FormControl type="date" defaultValue={assignment?.due}
+                  onChange={(e)=>{dispatch(updateAssignment({...assignment, due: e.target.value}))}}></FormControl>
                 </Col>
               </Row>
             </div>
           </Col>
         </FormGroup>
         <hr id="wd-horizontal-line" />
-        <Link to={`/Kambaz/Courses/${cid}/Assignments`}><Button type="submit" variant="danger" className="float-end wd-save-btn">Save</Button></Link>
-        <Link to={`/Kambaz/Courses/${cid}/Assignments`}><Button variant="light" className="float-end wd-cancel-btn">Cancel</Button></Link>
+        <Button type="submit" variant="danger" className="float-end wd-save-btn" onClick={handleSave}>Save</Button>
+        <Button variant="light" className="float-end wd-cancel-btn" onClick={handleCancel}>Cancel</Button>
       </Form>
     </div>
 

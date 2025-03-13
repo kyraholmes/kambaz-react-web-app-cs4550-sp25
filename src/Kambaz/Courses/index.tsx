@@ -9,10 +9,12 @@ import PeopleTable from "./People/Table";
 //import CourseNavigationBar from "./NavigationBar";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useParams, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-export default function Courses({ courses } : { courses : any[]; }) {
+export default function Courses() {
+  const { courses } = useSelector((state: any) => state.courseReducer);
   const { cid } = useParams();
-  const course = courses.find((course) => course._id === cid);
+  const course = courses.find((course : any) => course._id === cid);
   const { pathname } = useLocation();
 
   return (

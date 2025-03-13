@@ -5,12 +5,20 @@ import SideGrip from "../Modules/SideGrip";
 import AssignmentDetails from "./AssignmentDetails";
 import AssignmentButtons from "./AssignmentButtons";
 import { useParams } from "react-router-dom";
-import * as db from "../../Database";
+import { useDispatch, useSelector } from "react-redux";
+import AssignmentControlButtons from "./AssignmentControlButtons";
+import { deleteAssignment } from "./reducer";
 
 export default function Assignments() {
   const { cid } = useParams();
-  const assignments = db.assignments; 
+  const { assignments } = useSelector((state: any) => state.assignmentReducer);
+  const dispatch = useDispatch();
   
+  const handleDelete = (assignmentId : string) => {
+
+     dispatch(deleteAssignment(assignmentId));
+  }
+
   return (
     <div id="wd-assignments">
       <AssignmentButtons />
@@ -31,7 +39,7 @@ export default function Assignments() {
                     <SideGrip />
                     <EditAssignment />
                     <AssignmentDetails aName={`${assignment.title}`} aAvailDate={`${assignment.dueDate}`} aDueDate={`${assignment.availDate}`}/>
-                    <LessonControlButtons />
+                    <AssignmentControlButtons  deleteAssignment={handleDelete} aid={assignment._id}/>
                   </ListGroup.Item>
                 </a>  
               </ListGroup>
