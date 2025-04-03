@@ -7,12 +7,17 @@ import { useState } from "react";
 import { addEnrollment, deleteEnrollment } from "./enrollReducer";
 
 export default function Dashboard(
-    {userCourses, unenrolledUserCourses, addCourse, deleteCourse, updateCourse} : {
+    {userCourses, unenrolledUserCourses, addCourse,
+         deleteCourse, updateCourse,
+        enrollCourse, unenrollCourse} : {
         userCourses: any[];
         unenrolledUserCourses: any[];
         addCourse: (course:any) => void;
         deleteCourse: (courseId:string) => void;
         updateCourse: (course:any) => void;
+        enrollCourse: (courseId:string) => void;
+        unenrollCourse: (courseId:string) => void;
+
     }) 
 
     
@@ -24,9 +29,11 @@ export default function Dashboard(
     const handleEnrollShow = () => {setShowEnrollments(!showEnrollments)};
 
     const handleEnroll = (courseId : any) => {
+        enrollCourse(courseId);
         dispatch(addEnrollment({user: currentUser._id, course: courseId}));
     };
     const handleUnenroll = (courseId : any) => {
+        unenrollCourse(courseId);
         dispatch(deleteEnrollment({user: currentUser._id, course: courseId}));
     };
 

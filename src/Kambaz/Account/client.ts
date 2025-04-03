@@ -24,6 +24,16 @@ export const findMyUnCourses = async () => {
   return data;
 }
 
+export const enrollInCourse = async (courseId: any) => {
+  const {data} = await axiosWithCredentials.post(`${USERS_API}/current/courses/enroll`, courseId);
+  return data;
+}
+
+export const unenrollFromCourse = async (courseId: any) => {
+  const {data} = await axiosWithCredentials.delete(`${USERS_API}/current/courses/unenroll`, courseId);
+  return data;
+}
+
 export const signin = async (credentials: any) => {
   const response = await axiosWithCredentials.post( `${USERS_API}/signin`, credentials );
   return response.data;

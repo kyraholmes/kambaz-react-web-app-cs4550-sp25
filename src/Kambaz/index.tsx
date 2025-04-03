@@ -60,6 +60,13 @@ export default function Kambaz() {
         }));
     };
     
+    const unenrollFromCourse = async (courseId : string) => {
+        await userClient.unenrollFromCourse(courseId);
+    }
+
+    const enrollInCourse = async (courseId : string) => {
+        await userClient.enrollInCourse(courseId);
+    }
     
     
     return (
@@ -78,6 +85,8 @@ export default function Kambaz() {
                                         addCourse={addNewCourse} 
                                         deleteCourse={deleteCourse}
                                         updateCourse={updateCourse}
+                                        unenrollCourse={unenrollFromCourse}
+                                        enrollCourse={enrollInCourse}
                                     />
                                 </ProtectedRoute>} />
                             <Route path="/Courses/:cid/*" element={<ProtectedRoute><Courses /></ProtectedRoute>} />
