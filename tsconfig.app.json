@@ -26,5 +26,5 @@
   },
   "include": [
     "src"
-  ]
+, "kambaz-node-server-app/Lab5/PathParameters.js"  ]
 }
