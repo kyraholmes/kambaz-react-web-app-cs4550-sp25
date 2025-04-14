@@ -30,11 +30,9 @@ export default function Dashboard(
 
     const handleEnroll = (courseId : any) => {
         enrollCourse(courseId);
-        dispatch(addEnrollment({user: currentUser._id, course: courseId}));
     };
     const handleUnenroll = (courseId : any) => {
         unenrollCourse(courseId);
-        dispatch(deleteEnrollment({user: currentUser._id, course: courseId}));
     };
 
     const [course, setCourse] = useState({name: "New Course", description: ""});

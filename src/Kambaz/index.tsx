@@ -7,7 +7,7 @@ import "./styles.css"
 import ProtectedRoute from "./Account/ProtectedRoute";
 import Session from "./Account/Session";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as courseClient from "./Courses/client";
 import * as userClient from "./Account/client";
 
@@ -48,7 +48,6 @@ export default function Kambaz() {
 
     const deleteCourse = async (courseId: string) => {
         const status = await courseClient.deleteCourse(courseId);
-        console.log(status)
         setCourses(courses.filter((course) => course._id !== courseId));
     };
 
@@ -61,13 +60,23 @@ export default function Kambaz() {
     };
     
     const unenrollFromCourse = async (courseId : string) => {
+        const switchCourse = courses.find((course) => course._id === courseId)
+
+        setUnCourses([...unCourses, switchCourse]);
+        setCourses(courses.filter((course) => course._id !== courseId));
+
         await userClient.unenrollFromCourse(courseId);
     }
 
     const enrollInCourse = async (courseId : string) => {
+        const switchCourse = unCourses.find((course) => course._id === courseId)
+
+        setCourses([...courses, switchCourse]);
+        setUnCourses(unCourses.filter((course) => course._id !== courseId));
+        
         await userClient.enrollInCourse(courseId);
+        
     }
-    
     
     return (
         <Session>
