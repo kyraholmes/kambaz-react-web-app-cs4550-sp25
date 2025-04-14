@@ -2,9 +2,8 @@ import { Link } from "react-router-dom";
 import { Row, Col, FormControl } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useState } from "react";
-import { addEnrollment, deleteEnrollment } from "./enrollReducer";
 
 export default function Dashboard(
     {userCourses, unenrolledUserCourses, addCourse,
@@ -23,7 +22,6 @@ export default function Dashboard(
     
 {
     const { currentUser } = useSelector((state: any) => state.accountReducer);
-    const dispatch = useDispatch();
     
     const [showEnrollments, setShowEnrollments] = useState(false);
     const handleEnrollShow = () => {setShowEnrollments(!showEnrollments)};

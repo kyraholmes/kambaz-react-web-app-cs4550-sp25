@@ -7,7 +7,7 @@ import "./styles.css"
 import ProtectedRoute from "./Account/ProtectedRoute";
 import Session from "./Account/Session";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import * as courseClient from "./Courses/client";
 import * as userClient from "./Account/client";
 
@@ -49,6 +49,7 @@ export default function Kambaz() {
     const deleteCourse = async (courseId: string) => {
         const status = await courseClient.deleteCourse(courseId);
         setCourses(courses.filter((course) => course._id !== courseId));
+        status
     };
 
     const updateCourse = async (course:any) => {
