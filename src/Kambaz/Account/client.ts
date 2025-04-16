@@ -46,28 +46,22 @@ export const createCourse = async (course:any) => {
   return data;
 }
 
-// sends goes to users dao, which calls courses dao and gives it the current user's id
-export const findMyCourses = async () => {
-  const {data} = await axiosWithCredentials.get(`${USERS_API}/current/courses`);
-  return data;
-}
+export const findCoursesForUser = async (userId: string) => {
+  const response = await axiosWithCredentials.get(`${USERS_API}/${userId}/courses`);
+  return response.data;
+};
 
-// sends goes to users dao, which calls courses dao and gives it the current user's id
-export const findMyUnCourses = async () => {
-  const {data} = await axiosWithCredentials.get(`${USERS_API}/current/uncourses`);
-  return data;
-}
 
-export const enrollInCourse = async (courseId: any) => {
-  const {data} = await axiosWithCredentials.post(`${USERS_API}/current/enroll`, {courseId});
-  return data;
-}
+export const enrollInCourse = async (userId: string, courseId: string) => {
+  const response = await axiosWithCredentials.post(`${USERS_API}/${userId}/courses/${courseId}`);
+  return response.data;
+ };
 
-export const unenrollFromCourse = async (courseId: any) => {
-
-  const {data} = await axiosWithCredentials.delete(`${USERS_API}/current/unenroll`, {params: {courseId}});
-  return data;
-}
+ export const unenrollFromCourse = async (userId: string, courseId: string) => {
+  const response = await axiosWithCredentials.delete(`${USERS_API}/${userId}/courses/${courseId}`);
+  return response.data;
+ };
+ 
 
 export const signin = async (credentials: any) => {
   const response = await axiosWithCredentials.post( `${USERS_API}/signin`, credentials );

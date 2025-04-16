@@ -15,12 +15,32 @@ import * as userClient from "./Account/client";
 
 export default function Kambaz() {  
     const [courses, setCourses] = useState<any[]>([]);
-    const [unCourses, setUnCourses] = useState<any[]>([]);
     const { currentUser } = useSelector((state: any) => state.accountReducer);
+
+    const [enrolling, setEnrolling] = useState<boolean>(false);
+    const findCoursesForUser = async () => {
+      try {
+        const courses = await userClient.findCoursesForUser(currentUser._id);
+        setCourses(courses);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
     const fetchCourses = async () => {
       try {
-        const courses = await userClient.findMyCourses();
+        const allCourses = await courseClient.fetchAllCourses();
+        const enrolledCourses = await userClient.findCoursesForUser(
+          currentUser._id
+        );
+        const courses = allCourses.map((course: any) => {
+          if (enrolledCourses.find((c: any) => c._id === course._id)) {
+            return { ...course, enrolled: true };
+          } else {
+            return course;
+          }
+        });
+        
         setCourses(courses);
       } catch (error) {
         console.error(error);
@@ -28,21 +48,15 @@ export default function Kambaz() {
     };
 
     useEffect(() => {
-      fetchCourses();
-      fetchUnCourses();
-    }, [currentUser]);
-
-    const fetchUnCourses = async () => {
-        try {
-          const courses = await userClient.findMyUnCourses();
-          setUnCourses(courses);
-        } catch (error) {
-          console.error(error);
-        }
-    };
+        if (enrolling) {
+            fetchCourses();
+          } else {
+            findCoursesForUser();
+          }
+    }, [currentUser, enrolling]);
 
     const addNewCourse = async(course:any) => {
-        const newCourse = await userClient.createCourse(course);
+        const newCourse = await courseClient.createCourse(course);
         setCourses([...courses, newCourse]);
     }
 
@@ -60,24 +74,23 @@ export default function Kambaz() {
         }));
     };
     
-    const unenrollFromCourse = async (courseId : string) => {
-        const switchCourse = courses.find((course) => course._id === courseId)
-
-        setUnCourses([...unCourses, switchCourse]);
-        setCourses(courses.filter((course) => course._id !== courseId));
-
-        await userClient.unenrollFromCourse(courseId);
-    }
-
-    const enrollInCourse = async (courseId : string) => {
-        const switchCourse = unCourses.find((course) => course._id === courseId)
-
-        setCourses([...courses, switchCourse]);
-        setUnCourses(unCourses.filter((course) => course._id !== courseId));
-        
-        await userClient.enrollInCourse(courseId);
-        
-    }
+    const updateEnrollment = async (courseId: string, enrolled: boolean) => {
+        if (enrolled) {
+          await userClient.enrollInCourse(currentUser._id, courseId);
+        } else {
+          await userClient.unenrollFromCourse(currentUser._id, courseId);
+        }
+        setCourses(
+          courses.map((course) => {
+            if (course._id === courseId) {
+              return { ...course, enrolled: enrolled };
+            } else {
+              return course;
+            }
+          })
+        );
+      };
+     
     
     return (
         <Session>
@@ -91,12 +104,12 @@ export default function Kambaz() {
                                 <ProtectedRoute>
                                     <Dashboard 
                                         userCourses={courses} 
-                                        unenrolledUserCourses={unCourses} 
                                         addCourse={addNewCourse} 
                                         deleteCourse={deleteCourse}
                                         updateCourse={updateCourse}
-                                        unenrollCourse={unenrollFromCourse}
-                                        enrollCourse={enrollInCourse}
+                                        updateEnrollment={updateEnrollment}
+                                        enrolling={enrolling}
+                                        setEnrolling={setEnrolling}
                                     />
                                 </ProtectedRoute>} />
                             <Route path="/Courses/:cid/*" element={<ProtectedRoute><Courses /></ProtectedRoute>} />

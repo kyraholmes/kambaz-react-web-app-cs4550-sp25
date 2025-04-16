@@ -6,32 +6,19 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 export default function Dashboard(
-    {userCourses, unenrolledUserCourses, addCourse,
+    {userCourses, addCourse,
          deleteCourse, updateCourse,
-        enrollCourse, unenrollCourse} : {
+        updateEnrollment, enrolling, setEnrolling} : {
         userCourses: any[];
-        unenrolledUserCourses: any[];
         addCourse: (course:any) => void;
         deleteCourse: (courseId:string) => void;
         updateCourse: (course:any) => void;
-        enrollCourse: (courseId:string) => void;
-        unenrollCourse: (courseId:string) => void;
-
+        updateEnrollment: (courseId: string, enrolled: boolean) => void;
+        enrolling: boolean;
+        setEnrolling: (enrolling: boolean) => void;
     }) 
-
-    
 {
     const { currentUser } = useSelector((state: any) => state.accountReducer);
-    
-    const [showEnrollments, setShowEnrollments] = useState(false);
-    const handleEnrollShow = () => {setShowEnrollments(!showEnrollments)};
-
-    const handleEnroll = (courseId : any) => {
-        enrollCourse(courseId);
-    };
-    const handleUnenroll = (courseId : any) => {
-        unenrollCourse(courseId);
-    };
 
     const [course, setCourse] = useState({name: "New Course", description: ""});
 
@@ -58,7 +45,9 @@ export default function Dashboard(
             </div> : null}
             <div className="d-flex justify-content-between">
             <h2 id="wd-dashboard-published">Published Courses ({userCourses.length})</h2> 
-            {currentUser.role === "STUDENT" && <Button onClick={handleEnrollShow}>Enrollments</Button>}
+            {currentUser.role === "STUDENT" && <button onClick={() => setEnrolling(!enrolling)} className="float-end btn btn-primary" >
+                {enrolling ? "My Courses" : "All Courses"} 
+            </button> }
             </div>
             <hr />
             <br />
@@ -92,30 +81,15 @@ export default function Dashboard(
                                                 Edit
                                             </button>
                                         </> : null }
-                                        {showEnrollments && <Button  className="float-end" variant="info" onClick={(event) => {
-                                           event.preventDefault();
-                                           handleUnenroll(course._id)
-                                        }}>Unenroll</Button>}
-                                    </Card.Body>
-                                </Link>
-                            </Card>
-                        </Col>
-                    ))}
-                    {showEnrollments && unenrolledUserCourses
-                        .map((course : any) => (
-                        <Col className="wd-dashboard-course">
-                            <Card>
-                                <Link to={`/Kambaz/Courses/${course._id}/Home`}
-                                    className="wd-dashboard-course-link text-decoration-none text-dark">
-                                    <Card.Img variant="top" src={course.imageLoc} width="100%" height={160}/>
-                                    <Card.Body>
-                                        <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidded">{course.name}</Card.Title>
-                                        <Card.Text className="wd-dashboard-course-description overflow-hidden" style={{ height: "50px" }}>{course.description}</Card.Text>
-                                        <Button variant="primary">Go</Button>
-                                        {showEnrollments && <Button  className="float-end" variant="info" onClick={(event) => {
-                                            event.preventDefault();
-                                            handleEnroll(course._id);
-                                        }}>Enroll</Button>}
+                                        {enrolling && (
+                                            <button className={`btn ${ course.enrolled ? "btn-danger" : "btn-success" } float-end`} 
+                                                onClick={(event) => {
+                                                    event.preventDefault();
+                                                    updateEnrollment(course._id, !course.enrolled);
+                                              }}>
+                                                {course.enrolled ? "Unenroll" : "Enroll"}
+                                            </button>
+                                        )}
                                     </Card.Body>
                                 </Link>
                             </Card>

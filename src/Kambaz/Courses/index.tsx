@@ -11,7 +11,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { useParams, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import * as client from "../Account/client";
+import * as coursesClient from "./client";
 
 export default function Courses() {
   const { courses } = useSelector((state: any) => state.courseReducer);
@@ -21,7 +21,7 @@ export default function Courses() {
 
   const [users, setUsers] = useState<any[]>([]);
   const fetchUsers = async () => {
-    const users = await client.findAllUsers();
+    const users = await coursesClient.findUsersForCourse(cid!);
     setUsers(users);
   };
   useEffect(() => {
