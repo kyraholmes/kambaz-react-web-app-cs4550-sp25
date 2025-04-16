@@ -27,6 +27,7 @@ export default function Users() {
     } else {
       fetchUsers();
     }
+    name;
   };
 
  const [users, setUsers] = useState<any[]>([]);
