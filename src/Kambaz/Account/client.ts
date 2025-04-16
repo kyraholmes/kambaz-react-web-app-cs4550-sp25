@@ -5,6 +5,15 @@ const axiosWithCredentials = axios.create({ withCredentials: true });
 export const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
 export const USERS_API = `${REMOTE_SERVER}/api/users`;
 
+export const createUser = async (user: any) => {
+  const response = await axios.post(`${USERS_API}`, user);
+  return response.data;
+};
+
+export const deleteUser = async (userId: string) => {
+  const response = await axios.delete( `${USERS_API}/${userId}` );
+  return response.data;
+};
 
 export const findAllUsers = async () => {
   const response = await axiosWithCredentials.get(USERS_API);
