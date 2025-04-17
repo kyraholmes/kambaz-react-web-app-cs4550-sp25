@@ -21,7 +21,7 @@ export default function Assignments() {
   const navigate = useNavigate();
 
   const fetchAssignments = async () => {
-    const modules = await coursesClient.findAssignmentsForCourse(cid as string);
+    const modules = await coursesClient.findAssignmentsForCourse(cid!);
     dispatch(setAssignments(modules));
   };
 
@@ -30,14 +30,16 @@ export default function Assignments() {
     fetchAssignments();
   }, []);
   
-  const handleDelete = (assignmentId : string) => {
-     assignmentClient.deleteAssignment(assignmentId);
+  const handleDelete = async (assignmentId : string) => {
+     await assignmentClient.deleteAssignment(assignmentId);
      dispatch(deleteAssignment(assignmentId));
   }
 
   const newAssignment = async () => {
-    const newAssignment = await coursesClient.createAssignmentForCourse(cid,{});
+    console.log("reached1");
+    const newAssignment = await coursesClient.createAssignmentForCourse(cid,{ title: "New Assignment" });
     dispatch(addAssignment(newAssignment));
+    console.log("newAssignment: ", newAssignment);
     navigate(`/Kambaz/Courses/${cid}/Assignments/${newAssignment._id}`);
   }
 

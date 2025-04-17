@@ -21,6 +21,7 @@ export default function Kambaz() {
     const findCoursesForUser = async () => {
       try {
         const courses = await userClient.findCoursesForUser(currentUser._id);
+        console.log(courses);
         setCourses(courses);
       } catch (error) {
         console.error(error);
@@ -40,7 +41,7 @@ export default function Kambaz() {
             return course;
           }
         });
-        
+
         setCourses(courses);
       } catch (error) {
         console.error(error);
@@ -90,8 +91,7 @@ export default function Kambaz() {
           })
         );
       };
-     
-    
+
     return (
         <Session>
             <div id="wd-kambaz">

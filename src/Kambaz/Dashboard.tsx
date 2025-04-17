@@ -22,6 +22,8 @@ export default function Dashboard(
 
     const [course, setCourse] = useState({name: "New Course", description: ""});
 
+    
+
     return (
         <div id="wd-dashboard">
             <h1 id="wd-dashboard-title">Dashboard</h1> <hr />

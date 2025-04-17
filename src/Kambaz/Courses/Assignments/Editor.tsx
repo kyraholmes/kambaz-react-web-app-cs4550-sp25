@@ -17,18 +17,19 @@ export default function AssignmentEditor(
 
   const navigate = useNavigate();
   const { assignments } = useSelector((state: any) => state.assignmentReducer);
+
   const assignment = assignments.find(
     (assignment: any) => (assignment._id === aid && assignment.course === cid)); 
   
   const [tempAssignment, changeAssignment] = useState(assignment);
 
-  const removeAssignment = (assignmentId : string) => {
-    assignmentClient.deleteAssignment(assignmentId);
+  const removeAssignment = async (assignmentId : string) => {
+    await assignmentClient.deleteAssignment(assignmentId);
     dispatch(deleteAssignment(assignmentId));
  }
 
- const editAssignment = (assignment : any) => {
-   assignmentClient.updateAssignment(assignment);
+ const editAssignment = async (assignment : any) => {
+   await assignmentClient.updateAssignment(assignment);
    dispatch(updateAssignment(assignment));
  }
 
@@ -45,12 +46,12 @@ export default function AssignmentEditor(
   };
 
   const handleCancel = () => {
-      tempAssignment.isNew === "true" ? removeAssignment(assignment._id) : editAssignment({...original});
+      tempAssignment.isNewA === "true" ? removeAssignment(assignment._id) : editAssignment({...original});
       navigate(`/Kambaz/Courses/${cid}/Assignments`);
   }
 
   const handleSave = () => {
-    editAssignment({...tempAssignment, isNew: "false"});
+    editAssignment({...tempAssignment, isNewA: "false"});
     navigate(`/Kambaz/Courses/${cid}/Assignments`);
   }
 
