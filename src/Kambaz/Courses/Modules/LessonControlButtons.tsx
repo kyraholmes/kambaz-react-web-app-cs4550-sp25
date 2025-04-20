@@ -9,7 +9,7 @@ export default function LessonControlButtons() {
   
   return (
     <div className="float-end">
-      {currentUser.role === "FACULTY" && <GreenCheckmark />}
+      {currentUser.role === "FACULTY" && <GreenCheckmark green={false}/>}
       <IoEllipsisVertical className="fs-4" />
     </div> );
 }

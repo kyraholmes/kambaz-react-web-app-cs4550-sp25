@@ -212,11 +212,17 @@ body * {  font-family: system-ui, -apple-system, "Segoe UI",
   Kambaz/Courses/Assignemnts/AssignmentButtons.tsx
 */
 
-#wd-add-assignment-btn, #wd-add-group-btn {
+#wd-add-assignment-btn, #wd-add-group-btn, #wd-add-quiz-btn, #wd-quiz-options-btn{
   height: 40px;
   font-size: 16px;
   border-radius: 3px;
   padding-top: 7px; 
+}
+
+#wd-quiz-options-btn {
+  margin-left: .25rem;
+  padding-right: 10px !important;
+  padding-left: 10px !important;
 }
 
 #wd-assignment-buttons > Col {
@@ -235,11 +241,15 @@ body * {  font-family: system-ui, -apple-system, "Segoe UI",
   border-width: 1px;
 
 }
+
 .wd-assignment-button-col {
   vertical-align: middle;
   margin-bottom: 30px;
 }
 
+#wd-quizzes .wd-assignment-button-col  {
+  margin-bottom: 10px;
+}
 
 #wd-assignment-search {
   padding: 0px;
@@ -404,3 +414,16 @@ body * {  font-family: system-ui, -apple-system, "Segoe UI",
   
 }
 
+#wd-quiz-rocket {
+  margin-right: .75em;
+  margin-left: .75em;
+  width: 22px;
+  height: 22px;
+}
+
+#wd-quiz-dropdown {
+  margin-right: .75em;
+  margin-left: .75em;
+  width: 22px;
+  height: 22px;
+}

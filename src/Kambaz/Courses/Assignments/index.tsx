@@ -36,10 +36,8 @@ export default function Assignments() {
   }
 
   const newAssignment = async () => {
-    console.log("reached1");
     const newAssignment = await coursesClient.createAssignmentForCourse(cid,{ title: "New Assignment" });
     dispatch(addAssignment(newAssignment));
-    console.log("newAssignment: ", newAssignment);
     navigate(`/Kambaz/Courses/${cid}/Assignments/${newAssignment._id}`);
   }
 
@@ -83,7 +81,7 @@ export default function Assignments() {
           {assignments
             .filter((assignment:any) => (assignment.course === cid))
             .map((assignment:any) => (
-              <ListGroup className="wd-assignment rounded-0">
+              <ListGroup className="wd-assignment rounded-0" key="assignment._id">
                 <a href={`#/Kambaz/Courses/${cid}/Assignments/${assignment._id}`}
                   className="wd-assignment-link" >
                   <ListGroup.Item className="wd-assignment p-3 ps-1">

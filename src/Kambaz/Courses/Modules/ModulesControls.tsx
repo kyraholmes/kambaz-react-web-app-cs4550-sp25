@@ -31,17 +31,17 @@ export default function ModulesControls(
           </Button>
           <Dropdown className="float-end me-2">
             <Dropdown.Toggle variant="secondary" size="lg" id="wd-publish-all-btn">
-            <GreenCheckmark/> Publish All
+            <GreenCheckmark green={false}/> Publish All
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item id="wd-publish-all">
-                <GreenCheckmark /> Publish All
+                <GreenCheckmark green={false}/> Publish All
               </Dropdown.Item>
               <Dropdown.Item id="wd-publish-all-modules-and-items">
-                <GreenCheckmark /> Publish all modules and items
+                <GreenCheckmark green={false}/> Publish all modules and items
               </Dropdown.Item>
               <Dropdown.Item id="wd-publish-modules-only">
-                <GreenCheckmark /> Publish modules only
+                <GreenCheckmark green={false}/> Publish modules only
               </Dropdown.Item>
               <Dropdown.Item id="wd-unpublish-all-modules-and-items">
                 <IoBanOutline style={{width: "20px", height: "20px"}} /> Unpublish all modules and items

@@ -22,7 +22,7 @@ export default function AssignmentControlButtons(
           event.preventDefault();
           handleShow();
         }}/>
-        <GreenCheckmark />
+        <GreenCheckmark green={false}/>
       </>}
       <IoEllipsisVertical className="fs-4 ms-2" />
       <DeleteAlert show={show} handleClose={handleClose} deleteAssignment={deleteAssignment} aid={aid}/>

@@ -20,7 +20,7 @@ export default function LessonControlButtons(
       {currentUser.role === "FACULTY" ? <>
         <FaPencil onClick={() => editModule(moduleId)} className="text-primary me-3" />
         <FaTrash className="text-danger me-2 mb-1" onClick={() => deleteModule(moduleId)}/>
-        <GreenCheckmark />
+        <GreenCheckmark green={false}/>
         <FaPlus />
       </> : null}
       <IoEllipsisVertical className="fs-4" />

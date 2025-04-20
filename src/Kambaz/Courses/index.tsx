@@ -2,6 +2,7 @@ import CourseNavigation from "./Navigation";
 import Modules from "./Modules";
 import Home from "./Home";
 import Assignments from "./Assignments";
+import Quizzes from "./Quizzes";
 import AssignmentEditor from "./Assignments/Editor";
 import { Navigate, Route, Routes } from "react-router"
 // import { FaAlignJustify } from "react-icons/fa6";
@@ -12,6 +13,7 @@ import { useParams, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import * as coursesClient from "./client";
+import QuizEditor from "./Quizzes/Editor";
 
 export default function Courses() {
   const { courses } = useSelector((state: any) => state.courseReducer);
@@ -48,7 +50,10 @@ export default function Courses() {
             <Route path="Modules" element={<Modules />} />
             <Route path="Assignments" element={<Assignments />} />
             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
+            <Route path="Quizzes" element={<Quizzes />} />
+            <Route path="Quizzes/:qid" element={<QuizEditor />} />
             <Route path="People" element={<PeopleTable users={users}/>} />
+
           </Routes>
         </div>
       </div>
