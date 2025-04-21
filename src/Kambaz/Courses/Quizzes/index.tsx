@@ -24,9 +24,11 @@ export default function Quizzes() {
 
   const handleContextMenuClick = (event:any, quizId: any) => {
     event.preventDefault()
-    setCurrentQuizId(quizId);
+    if(currentUser.role === "FACULTY") {
+      setCurrentQuizId(quizId);
     setTarget(event.target);
     setShowMenu((prev) => !prev);
+    }
   };
 
   const handleMenuClose = () => setShowMenu(false);
@@ -91,7 +93,7 @@ export default function Quizzes() {
           {quizzes
             .map((quiz: any) => (
               <ListGroup className="wd-assignment rounded-0" key={`${quiz._id}`}>
-                <a href={`#/Kambaz/Courses/${cid}/Quizzes/${quiz._id}`}
+                <a href={currentUser.role === "FACULTY" ? `#/Kambaz/Courses/${cid}/Quizzes/${quiz._id}` : `#/Kambaz/Courses/${cid}/Quizzes/start/${quiz._id}`}
                   className="wd-assignment-link" >
                   <ListGroup.Item className="wd-assignment p-3 ps-1">
                   <MdOutlineRocketLaunch id="wd-quiz-rocket"/>
