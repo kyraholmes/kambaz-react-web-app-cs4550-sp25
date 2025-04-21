@@ -40,6 +40,6 @@ export const findQuestionById = async (questionId: string) => {
 }
 
 export const addQuestionToQuiz = async (question:any, quizId: any) => {
-  const response = await axios.post(`${QUIZZES_API}/${quizId}/questions`);
+  const response = await axios.post(`${QUIZZES_API}/${quizId}/questions`, question);
   return response.data;
 }

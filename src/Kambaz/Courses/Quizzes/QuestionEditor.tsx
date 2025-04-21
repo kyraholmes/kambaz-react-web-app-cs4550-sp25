@@ -110,7 +110,7 @@ export default function QuestionEditor({quiz}:{quiz:any}) {
                         <Row>
                           <Col>
                             <Form.Check name={`correctAnswerGroup-${question._id}`} type="radio" value={question.correctAnswers.includes(answer) ? 1: 0} label={`${ question.correctAnswers.includes(answer) ? "Correct Answer" : "Possible Answer"}`} 
-                            onChange={(e) => {
+                            onChange={() => {
                               handleChangeQ({...question, correctAnswers: [answer]})}}/>
                           </Col>
                         <Col>
@@ -121,7 +121,7 @@ export default function QuestionEditor({quiz}:{quiz:any}) {
                           }} />
                           </Col>
                           <Col xs="auto" className="pr-2 justify-content-center align-items-center">
-                            <TiDeleteOutline color="Red" style={{width: "40px", height:"25px"}} onClick={(e)=> {
+                            <TiDeleteOutline color="Red" style={{width: "40px", height:"25px"}} onClick={()=> {
                               const updatedQuestions = question.possibleAnswers.filter((a:any)=> answer !== a)
                               handleChangeQ({...question, possibleAnswers: updatedQuestions})
                             } }/>
@@ -145,7 +145,7 @@ export default function QuestionEditor({quiz}:{quiz:any}) {
                     <div>
                       <Row>
                         <Col>
-                          <Form.Check name={`correctAnswerGroup-${question._id}`} type="radio" value={question.correctAnswers.includes(answer) ? 1: 0} label={answer} onChange={(e) => {
+                          <Form.Check name={`correctAnswerGroup-${question._id}`} type="radio" value={question.correctAnswers.includes(answer) ? 1: 0} label={answer} onChange={() => {
                             handleChangeQ({...question, correctAnswers: [answer]})}}/>
                         </Col>
                         <Col>
@@ -171,7 +171,7 @@ export default function QuestionEditor({quiz}:{quiz:any}) {
                           </Col>
                           <Col xs="auto" className="pr-2 justify-content-center align-items-center">
                             <TiDeleteOutline color="Red" style={{width: "40px", height:"25px"}} onClick={(e)=> {
-                              const updatedAnswers = question.correctAnswers.filter((a:any, i:number) => i !== index); 
+                              const updatedAnswers = question.correctAnswers.filter((a:any, i:number) => {console.log(a, e); i !== index}); 
                               handleChangeQ({ ...question, correctAnswers: updatedAnswers });
                             } }/>
                           </Col>
