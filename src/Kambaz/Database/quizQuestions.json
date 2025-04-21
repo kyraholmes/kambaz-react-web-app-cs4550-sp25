@@ -1,0 +1,29 @@
+[
+  {
+    "_id": "1",
+    "title":"Super Googleable Question",
+    "question": "What is the square root of pi?",
+    "questionType": "Multiple Choice",
+    "points":2,
+    "possibleAnswers":["3.14", "2.91", "1.77"],
+    "correctAnswers":["1.77"]
+  },
+  {
+    "_id": "2",
+    "title":"There is a Right Answer",
+    "question": "Is Cheese Good?",
+    "questionType": "True or False",
+    "points":2,
+    "possibleAnswers":["True", "False"],
+    "correctAnswers":["True"]
+  },
+  {
+    "_id": "3",
+    "title":"Active Recall",
+    "question": "What is 1+0?",
+    "questionType": "Fill in the Blank",
+    "points":2,
+    "possibleAnswers":[""],
+    "correctAnswers":["1", "One", "one", "uno", "Uno"]
+  }
+]

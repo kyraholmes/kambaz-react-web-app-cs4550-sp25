@@ -427,3 +427,29 @@ body * {  font-family: system-ui, -apple-system, "Segoe UI",
   width: 22px;
   height: 22px;
 }
+
+#wd-minutes-text-entry-quiz,  #wd-minutes-label {
+  width: 100px;
+  margin-right: 10px;
+  margin-bottom: 0px
+}
+
+#wd-minutes-text-entry-quiz {
+  height: 30px;
+}
+
+#wd-time-limit-check {
+  padding-right: 0px;
+}
+
+#context-menu-popover {
+  font-size: 12px;
+}
+
+.question-form {
+  width: 100%
+}
+
+#smol-button {
+  width: 100px;
+}

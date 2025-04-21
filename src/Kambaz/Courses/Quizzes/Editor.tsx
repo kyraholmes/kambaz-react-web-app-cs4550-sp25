@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Tab, Tabs } from "react-bootstrap";
-import QuizDetails from "./QuizDetails";
+import { useParams } from "react-router-dom";
+import { Button, Col, Row, Tab, Tabs } from "react-bootstrap";
+import QuizDetailsEdit from "./QuizDetailsEdit";
 import * as quizClient from "./client";
+import * as courseClient from "../client";
+import QuestionEditor from "./QuestionEditor";
+import { IoEllipsisVertical } from "react-icons/io5";
 
 
 export default function QuizEditor() {
-  const {cid, qid} = useParams();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  
+  const { cid, qid } = useParams();
+
 
   const newQuiz = {
     course: cid,
@@ -28,7 +28,7 @@ export default function QuizEditor() {
     oneQuestionAtATime: true,
     webCam: false,
     lockQuestion: false,
-    dueDate:"2025-04-20",
+    dueDate: "2025-04-20",
     availDate: "2025-04-20",
     untilDate: "2025-04-20"
   }
@@ -45,18 +45,40 @@ export default function QuizEditor() {
 
   const [quiz, setGetQuiz] = useState<any>();
 
-  useEffect(()=> {
+  useEffect(() => {
     getQuiz();
   }, [qid]);
 
-  const saveQuiz = () => {};
-  const cancelChanges = () => {};
+  const saveQuiz = async (quiz: any, newQuiz: boolean) => {
+    if (newQuiz) {
+      await courseClient.createQuizForCourse(cid, quiz);
+    }
+    else {
+      await quizClient.updateQuiz(quiz);
+    }
+  };
 
   return (
     <div id="wd-quizs-editor">
+      <div className="d=flex justify-content-center">
+        <Row>
+          <Col>
+            <p><b>Points {quiz?.points} </b></p>
+          </Col>
+          <Col>
+            <p>{quiz?.status ? "Published" : "Not Published"}</p>
+          </Col>
+          <Col>
+            <Button variant="light" size="lg" className="me-1 ml-2 float-end" id="wd-quiz-options-btn">
+              <IoEllipsisVertical className="fs-4" />
+            </Button>
+          </Col>
+        </Row>
+      </div>
+      <hr />
       <Tabs defaultActiveKey={"Details"}>
-        <Tab eventKey="Details" title="Details"> <QuizDetails quiz={quiz} saveQuiz={saveQuiz} cancelChanges={cancelChanges}/> </Tab>
-        <Tab eventKey="Questions" title="Questions"></Tab>
+        <Tab eventKey="Details" title="Details"> <QuizDetailsEdit quiz={quiz} saveQuiz={saveQuiz} /> </Tab>
+        <Tab eventKey="Questions" title="Questions"><QuestionEditor quiz={quiz} /></Tab>
       </Tabs>
     </div>
   );

@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import * as coursesClient from "./client";
 import QuizEditor from "./Quizzes/Editor";
+import QuizDetailsView from "./Quizzes/QuizDetailsView";
 
 export default function Courses() {
   const { courses } = useSelector((state: any) => state.courseReducer);
@@ -51,7 +52,8 @@ export default function Courses() {
             <Route path="Assignments" element={<Assignments />} />
             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
             <Route path="Quizzes" element={<Quizzes />} />
-            <Route path="Quizzes/:qid" element={<QuizEditor />} />
+            <Route path="Quizzes/edit/:qid" element={<QuizEditor />} />
+            <Route path="Quizzes/:qid" element={<QuizDetailsView />} />
             <Route path="People" element={<PeopleTable users={users}/>} />
 
           </Routes>
