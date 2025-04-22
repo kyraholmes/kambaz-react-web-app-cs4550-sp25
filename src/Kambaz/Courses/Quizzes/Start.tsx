@@ -26,7 +26,6 @@ export default function QuizTake() {
   }
 
   const [questions, setQuestions] = useState<any>();
-  const [responses, setResponses] = useState<any>();
 
   
   useEffect(()=>{
@@ -43,7 +42,7 @@ export default function QuizTake() {
       <p>Started: Apr 22 at 11:45am</p>
       <h3>Quiz Instructions</h3>
       <hr/>
-      {questions?.map((question:any, index:number) => (
+      {questions?.map((question:any) => (
         <Row>
           <Col sm={1} className="p-0 d-flex justify-content-right mb-4 mt-4 pt-2">
             <RiArrowRightBoxFill className="ms-auto text-secondary" style={{width:'20px', height: '20px'}}/>
@@ -97,6 +96,7 @@ export default function QuizTake() {
       <h5 className="mt-4">Questions</h5>
       {questions?.map((question:any, index: number) => (
         <div className="d-flex align-items-center ">
+          <div style={{display:"none"}}>{question}</div>
           <GoQuestion />
           <p className="m-1 text-danger font-weight-bold">Question {index + 1}</p>
         </div>
