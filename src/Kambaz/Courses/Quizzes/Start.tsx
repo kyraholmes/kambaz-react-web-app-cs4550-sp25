@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import * as quizClient from "./client";
 import { Button, Col, FormCheck, FormControl, Row } from "react-bootstrap";
 import { GoQuestion } from "react-icons/go";
@@ -9,6 +9,8 @@ import { RiArrowRightBoxFill } from "react-icons/ri";
 export default function QuizTake() {
   const { cid, qid } = useParams(); // get the course ID & Quiz ID from the url
   const { currentUser } = useSelector((state: any) => state.accountReducer); //get the current user
+
+  const navigate = useNavigate();
 
   if (!currentUser) {
     console.log(cid);
@@ -91,12 +93,12 @@ export default function QuizTake() {
         <Button className="btn-light btn-sm ms-auto">Submit Quiz</Button>
       </div>
 
-      { currentUser.role === "FACULTY" && <Button> Keep Editing This Quiz </Button> }
+      { currentUser.role === "FACULTY" && <Button onClick={()=> navigate(`/Kambaz/Courses/${cid}/Quizzes/edit/${qid}`)}> Keep Editing This Quiz </Button> }
 
       <h5 className="mt-4">Questions</h5>
       {questions?.map((question:any, index: number) => (
         <div className="d-flex align-items-center ">
-          <div style={{display:"none"}}>{question}</div>
+          <div style={{display:"none"}}>{question.questionType}</div>
           <GoQuestion />
           <p className="m-1 text-danger font-weight-bold">Question {index + 1}</p>
         </div>

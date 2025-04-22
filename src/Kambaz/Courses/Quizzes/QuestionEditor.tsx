@@ -8,6 +8,9 @@ import { TiDeleteOutline } from "react-icons/ti";
 export default function QuestionEditor({quiz}:{quiz:any}) {
   const {cid, qid} = useParams();
 
+  const [questions, setQuestions] = useState<any>();
+  const [save1, setSave] = useState(false);
+
   console.log(cid, quiz);
   const fetchQuestions = async () => {
     const initialq = await quizzesClient.findQuestionsForQuiz(qid!);
@@ -16,16 +19,19 @@ export default function QuestionEditor({quiz}:{quiz:any}) {
   }
   useEffect(()=> {
     fetchQuestions();
-  },[qid])
+  },[qid, save1])
 
-  const [questions, setQuestions] = useState<any>();
   const [originalQuestions, setOriginalQuestions] = useState<any[]>([]);
 
-  const handleChangeQ = (q:any) => {
+  const handleChangeQ = async (q:any) => {
+
     const newQ = questions?.map((question:any) => {
+      console.log("b4: ",question)
       if(question._id === q._id) {
         question = q;
       }
+
+      console.log("after: ",question)
       return question;
     })
     setQuestions(newQ);
@@ -55,6 +61,7 @@ export default function QuestionEditor({quiz}:{quiz:any}) {
     console.log("Adding new question: ", newQu);
     await quizzesClient.addQuestionToQuiz(newQu,qid);
     setQuestions([...questions, newQu])
+    setSave(!save1);
   }
 
 
@@ -77,7 +84,14 @@ export default function QuestionEditor({quiz}:{quiz:any}) {
                   <FormControl type="text" value={question.title} onChange={(e) => handleChangeQ({...question, title: e.target.value}) }/>
                 </Col>
                 <Col>
-                  <FormSelect value={question.questionType} onChange={(e)=> handleChangeQ({...question, questionType: e.target.value})}>
+                  <FormSelect value={question.questionType} onChange={(e)=> {
+                    if (e.target.value === "True or False") {
+                      handleChangeQ({...question, questionType: e.target.value, possibleAnswers: ["True", "False"]});
+                    }
+                    else {
+                      handleChangeQ({...question, questionType: e.target.value})
+                    }
+                  }}>
                     <option value="Multiple Choice">Multiple Choice</option>
                     <option value="True or False">True or False</option>
                     <option value="Fill in the Blank">Fill in the Blank</option>
