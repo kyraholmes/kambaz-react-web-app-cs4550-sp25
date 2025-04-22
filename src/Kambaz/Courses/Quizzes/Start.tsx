@@ -50,29 +50,29 @@ export default function QuizTake() {
           <Col>
             <div className="border border-1 p-0 rounded-1 mb-4 mt-4">
               <div className=" d-flex bg-light justify-content-between align-items-center border-bottom p-4">
-                <p className="m-0">{question.title}</p>
-                <p className="m-0">{question.points} pts</p>
+                <p className="m-0">{question?.title}</p>
+                <p className="m-0">{question?.points} pts</p>
               </div>
               <div className="p-4 ">
-                <p className="m-0">{question.question}</p>
+                <p className="m-0">{question?.question}</p>
               </div>
-              {question.questionType === "Multiple Choice" && 
+              {question?.questionType === "Multiple Choice" && 
                 <div className="p-4 pt-0">
-                  {question.possibleAnswers.map((answer:string)=> (
+                  {question?.possibleAnswers.map((answer:string)=> (
                     <>
                     <hr className="m-2"/>
-                    <FormCheck name={`possible-${question._id}`} type="radio" label={answer} />
+                    <FormCheck name={`possible-${question?._id}`} type="radio" label={answer} />
                     </>
                   ))}
                 </div>
               }
-              {question.questionType === "True or False" && 
+              {question?.questionType === "True or False" && 
                 <div className="p-4 pt-0">
                   <>
                     <hr className="m-2 mt-0"/>
-                    <FormCheck name={`possible-${question._id}`} type="radio" label="True"/>
+                    <FormCheck name={`possible-${question?._id}`} type="radio" label="True"/>
                     <hr className="m-2"/>
-                    <FormCheck name={`possible-${question._id}`} type="radio" label="False"/>
+                    <FormCheck name={`possible-${question?._id}`} type="radio" label="False"/>
                   </>
                 </div>
               }
