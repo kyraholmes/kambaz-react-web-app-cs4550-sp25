@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import * as quizClient from "./client";
 import { Button, Col, Row } from "react-bootstrap";
 import { FaPencil } from "react-icons/fa6";
@@ -12,6 +12,8 @@ export default function QuizDetailsView () {
       const q = await quizClient.findQuizById(qid!);
       setGetQuiz(q)
   }
+
+  const navigate = useNavigate();
 
   const [quiz, setGetQuiz] = useState<any>(null);
 
@@ -39,7 +41,7 @@ export default function QuizDetailsView () {
   return (
     <div>
       <div className="d-flex justify-content-center">
-        <Button variant="light">
+        <Button variant="light" onClick={()=> navigate(`/Kambaz/Courses/${cid}/Quizzes/start/${qid}`)}>
           Preview
         </Button>
         <Link to={`/Kambaz/Courses/${cid}/Quizzes/edit/${qid}`} className="btn btn-light ms-2 d-flex align-items-center justify-content-center">
